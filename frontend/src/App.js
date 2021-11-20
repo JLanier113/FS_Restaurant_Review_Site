@@ -1,16 +1,17 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AddReview from "./components/add-review.js";
-import Login from "./components/login.js";
-import RestaurantsList from "./components/restaurants-list.js";
-import Restaurant from "./components/restaurants.js";
+
+import AddReview from "./components/add-review";
+import Restaurant from "./components/restaurants";
+import RestaurantsList from "./components/restaurants-list";
+import Login from "./components/login";
 
 function App() {
   const [user, setUser] = React.useState(null);
 
   async function login(user = null) {
-    setUser = user;
+    setUser(user);
   }
 
   async function logout() {
@@ -48,8 +49,7 @@ function App() {
       </nav>
 
       <div className="container mt-3">
-        <Routes>
-          /*Switches between / and restaurants*/
+        <Switch>
           <Route
             exact
             path={["/", "/restaurants"]}
@@ -67,7 +67,7 @@ function App() {
             path="/login"
             render={(props) => <Login {...props} login={login} />}
           />
-        </Routes>
+        </Switch>
       </div>
     </div>
   );

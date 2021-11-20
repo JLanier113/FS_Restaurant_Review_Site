@@ -8,8 +8,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/restaurants", restaurants);
-app.use("*", (req, res) => {
-  res.status(404).json({ error: "not found" });
-}); /*If they go to an undef url this message appears*/
+app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
 export default app;
